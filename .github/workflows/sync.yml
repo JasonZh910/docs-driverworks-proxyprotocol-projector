@@ -42,10 +42,10 @@ jobs:
       run: |
         git config pull.rebase false  # 设置 git pull 使用 merge 方式
         
-    - name: Sync with upstream
+    - name: Sync with upstream (allow unrelated histories)
       run: |
         git checkout main  # 确保切换到目标分支 main
-        git pull upstream main  # 从主仓库的 main 分支拉取更新
+        git pull upstream main --allow-unrelated-histories  # 强制合并不相关的历史
 
     - name: Check for changes and push
       run: |
