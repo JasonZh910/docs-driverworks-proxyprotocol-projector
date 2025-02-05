@@ -38,6 +38,10 @@ jobs:
           https://api.github.com/repos/snap-one/docs-driverworks-proxyprotocol-projector \
           || echo "Failed to access the upstream repository"  # 验证是否有权限访问主仓库
 
+    - name: Configure Git pull strategy to merge
+      run: |
+        git config pull.rebase false  # 设置 git pull 使用 merge 方式
+        
     - name: Sync with upstream
       run: |
         git checkout main  # 确保切换到目标分支 main
