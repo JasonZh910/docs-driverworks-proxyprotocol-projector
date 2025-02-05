@@ -23,15 +23,20 @@ jobs:
         git remote add upstream https://github.com/snap-one/docs-driverworks-proxyprotocol-projector.git
         git fetch upstream
         
-    - name: Ensure upstream/main branch exists
+    - name: Check remote repository URL
       run: |
-        git branch -r  # 查看所有远程分支，确保 upstream/main 存在
-        
+        git remote -v  # 检查远程仓库设置，确保 upstream URL 正确
+
+    - name: List all remote branches
+      run: |
+        git fetch upstream  # 确保拉取主仓库分支
+        git branch -r  # 查看远程分支，确保 upstream/main 存在
+
     - name: Sync with upstream
       run: |
         git checkout main  # 确保切换到目标分支 main
         git pull upstream main  # 从主仓库的 main 分支拉取更新
-        
+
     - name: Check for changes and push
       run: |
         git diff --quiet upstream/main main && git push origin main || echo "No changes to sync"
