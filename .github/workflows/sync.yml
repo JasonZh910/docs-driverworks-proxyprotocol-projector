@@ -32,6 +32,12 @@ jobs:
         git fetch upstream  # 确保拉取主仓库分支
         git branch -r  # 查看远程分支，确保 upstream/main 存在
 
+    - name: Check access to upstream repository
+      run: |
+        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/snap-one/docs-driverworks-proxyprotocol-projector \
+          || echo "Failed to access the upstream repository"  # 验证是否有权限访问主仓库
+
     - name: Sync with upstream
       run: |
         git checkout main  # 确保切换到目标分支 main
