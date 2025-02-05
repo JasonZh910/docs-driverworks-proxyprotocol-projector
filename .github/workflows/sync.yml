@@ -23,10 +23,10 @@ jobs:
         git remote add upstream https://github.com/snap-one/docs-driverworks-proxyprotocol-projector.git
         git fetch upstream
         
-    - name: Sync with upstream (merge upstream's master to your branch)
+    - name: Sync with upstream
       run: |
         git checkout main
-        git pull upstream main
+        git pull upstream master
         
     - name: Check for changes and push
       run: |
