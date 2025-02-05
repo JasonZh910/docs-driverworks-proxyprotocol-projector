@@ -25,9 +25,9 @@ jobs:
         
     - name: Sync with upstream
       run: |
-        git checkout main
-        git pull upstream master
+        git checkout main  # 确保切换到目标分支 main
+        git pull upstream main  # 从主仓库的 main 分支拉取更新
         
     - name: Check for changes and push
       run: |
-        git diff --quiet upstream/master && git push origin main || echo "No changes to sync"
+        git diff --quiet upstream/main && git push origin main || echo "No changes to sync"
